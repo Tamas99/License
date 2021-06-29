@@ -1,0 +1,4 @@
+{
+    "python.pythonPath": "d:\\License\\venv\\Scripts\\python.exe",
+    "python.analysis.extraPaths": ["./pyclick_master/pyclick"]
+}

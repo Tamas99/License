@@ -1,0 +1,9 @@
+d:\License\venv\Scripts\activate.bat
+
+cd MouseDynamicsAnalyzisWeb\MDA
+
+python manage.py runserver
+
+cd MouseDynamicsAnalyzisWeb\MDA\frontend
+
+npm run dev
