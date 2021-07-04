@@ -1,7 +1,7 @@
+from __future__ import annotations, division
 import numpy as np
 import pandas as pd
 import pysynth as ps
-from __future__ import annotations, division
 from enum import Enum
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.model_selection import RepeatedStratifiedKFold, cross_val_score

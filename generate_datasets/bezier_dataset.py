@@ -9,7 +9,7 @@ import humanclicker as hcfile
 from utils.settings import generate_mode
 from utils.settings import similarTimeDifferences
 
-def generateMouseMovementsHC():
+def generateMouseMovementsBezier():
     ## Paths
     path_for_data = 'D:/Diplomadolgozat/Users/'
     path_for_actions = 'D:/Diplomadolgozat/Actions/'
@@ -48,7 +48,7 @@ def generateMouseMovementsHC():
         }
 
         for filename in filenames:
-            if( filename.find('1min') == -1 ):  # Skipping the 3 min sections
+            if( filename.find('3min') == -1 ):  # Skipping the 1 min sections
                 continue                        #
             
             ## Show progress percentage

@@ -30,6 +30,32 @@ def countActionsPerUser():
     
     return length1, length3
 
+def saveNumOfActionsToFile():
+    savePath = 'D:/Diplomadolgozat/NumOfActions/'
+    Path(savePath).mkdir(parents=True, exist_ok=True)
+    l1, l3 = countActionsPerUser()
+    l1.to_csv(savePath + 'lengths_1min.csv', header=False, index=False)
+    l3.to_csv(savePath + 'lengths_3min.csv', header=False, index=False)
+
+def NumOfActionsToString():
+    savePath = 'D:/Diplomadolgozat/NumOfActions/'
+    Path(savePath).mkdir(parents=True, exist_ok=True)
+    l1, l3 = countActionsPerUser()
+    string = ''
+    index = 1
+    for i in l1:
+        string = string + 'User' + str(index) + ': ' + str(i) + ', '
+        index += 1
+
+    string2 = ''
+    index = 1
+    for i in l3:
+        string2 = string2 + 'User' + str(index) + ': ' + str(i) + ', '
+        index += 1
+
+    print(string)
+    print(string2)
+
 def sessionHistograms():
     savePath = 'D:/Diplomadolgozat/ActionsPerUserHistogram/'
     Path(savePath).mkdir(parents=True, exist_ok=True)

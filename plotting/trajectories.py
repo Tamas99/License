@@ -234,8 +234,9 @@ def plotTrajDxDy(dataset=0):
             actions = pd.read_csv(actionsPath)
 
             for i in range(actions.last_valid_index() + 1):
-                if i > 14:
-                    break
+                # Not just the first 15
+                # if i > 14:
+                #     break
                 starti = actions.iloc[i]['Start index']
                 stopi = actions.iloc[i]['Stop index']
                 x = np.array(data.iloc[starti:stopi + 1]['x'])
@@ -253,13 +254,13 @@ def plotTrajDxDy(dataset=0):
                 # plt.show()
 
                 fig = plt.figure()
-                max_y = np.max(y)
                 plt.title(str(i))
                 plt.ylabel('y')
                 plt.xlabel('x')
-                plt.plot(x, max_y - y, marker='.')
-                plt.plot(x[:1], max_y - y[:1], 'r.', label='Starting')
+                plt.plot(x, y, marker='.')
+                plt.plot(x[:1], y[:1], 'r.', label='Starting')
                 plt.legend()
+                plt.gca().invert_yaxis()
                 fig.savefig(saveFolder + user.capitalize() + '/' + minute +
                     '/tr/' + str(i) + '.png')
                 plt.close(fig)
@@ -305,8 +306,8 @@ def plotBezierTrajDxDy(dataset=0):
         
         Path(saveFolder + user.capitalize()).mkdir(parents=True, exist_ok=True)
         for filename in filenames:
-            if( filename.find('1min') == -1 ):  # Skipping the 3 min sections
-                continue
+            # if( filename.find('1min') == -1 ):  # Skipping the 3 min sections
+            #     continue
 
             print(dirname + ' ' + filename)
             filenameToSer = pd.Series([filename])
@@ -326,8 +327,9 @@ def plotBezierTrajDxDy(dataset=0):
             bezActions = pd.read_csv(bezActionsPath)
 
             for i in range(actions.last_valid_index() + 1):
-                if i > 14:
-                    break
+                # Not just the first 15 actions
+                # if i > 14:
+                #     break
                 starti = actions.iloc[i]['Start index']
                 stopi = actions.iloc[i]['Stop index']
                 x = np.array(data.iloc[starti:stopi + 1]['x'])
@@ -342,6 +344,7 @@ def plotBezierTrajDxDy(dataset=0):
                 by = np.array(bezData.iloc[bstarti:bstopi + 1]['y'])
                 bdy = np.diff(by)
 
+
                 # fig = plt.figure(1)
                 # ax = fig.add_subplot(1,1,1)
                 # ax.plot(dx)
@@ -352,16 +355,15 @@ def plotBezierTrajDxDy(dataset=0):
                 # plt.show()
 
                 fig = plt.figure()
-                max_y = np.max(y)
-                max_by = np.max(by)
                 plt.title(str(i))
                 plt.ylabel('y')
                 plt.xlabel('x')
-                plt.plot(x, max_y - y, marker='.', label='human')
-                plt.plot(bx, max_by - by, '--', label='Bézier')
-                plt.plot(x[:1], max_y - y[:1], 'r.', label='Starting')
-                plt.plot(bx[:1], max_by - by[:1], 'r.')
+                plt.plot(x, y, marker='.', label='human')
+                plt.plot(bx, by, '--', label='Bézier')
+                plt.plot(x[:1], y[:1], 'r.', label='Starting')
+                plt.plot(bx[:1], by[:1], 'r.')
                 plt.legend()
+                plt.gca().invert_yaxis()
                 fig.savefig(saveFolder + user.capitalize() + '/' + minute +
                     '/tr/' + str(i) + '.png')
                 plt.close(fig)
