@@ -19,6 +19,11 @@ def extractFeatures(dataset=0):
     path_for_data = 'D:/Diplomadolgozat/Users/'
     path_for_actions = 'D:/Diplomadolgozat/Actions/'
     savePath = 'D:/Diplomadolgozat/Features/'
+    name = 'plus'
+    name_strong_1min = 'sapimouse_1min_strong' + name + '.csv'
+    name_strong_3min = 'sapimouse_3min_strong' + name + '.csv'
+    name_1min = 'sapimouse_1min' + name + '.csv'
+    name_3min = 'sapimouse_3min' + name + '.csv'
     if (dataset == 1):
         # scaler_name = 'MinMaxScaler'
         # scaler_name = 'StandardScaler'
@@ -108,7 +113,7 @@ def extractFeatures(dataset=0):
                 perc75_dy = np.percentile(dy, 75)
                 perc75_dt = np.percentile(dt, 75)
 
-                ## Length
+                ## Length of actions
                 length = stopi - starti
 
                 ## Speed
@@ -186,6 +191,12 @@ def extractFeatures(dataset=0):
                 ## Estimated time
                 et = t[-1] - t[0]
 
+                ## Number of actions
+                number_of_actions = np.divide(len(actions), 1000)
+
+                ## Length of raw data
+                length_of_data = np.divide(len(data), 100)
+
                 currentFeatures = pd.DataFrame([[
                                 avg_dx, avg_dy, avg_dt,
                                 std_dx, std_dy, std_dt,
@@ -207,6 +218,7 @@ def extractFeatures(dataset=0):
                                 perc75_a, perc75_a_x, perc75_a_y,
                                 length, et,
                                 max_x, max_y,
+                                number_of_actions, length_of_data,
                                 userid
                                 ]], 
                             columns=[
@@ -230,6 +242,7 @@ def extractFeatures(dataset=0):
                                     'perc75_a', 'perc75_a_x', 'perc75_a_y',
                                     'length', 'et',
                                     'max_x', 'max_y',
+                                    'number_of_actions', 'length_of_data',
                                     'userid'
                                     ])
                 
@@ -237,15 +250,15 @@ def extractFeatures(dataset=0):
 
         count_users = count_users + 1
     
-    features['1min'].to_csv(savePath + 'sapimouse_1min_strong.csv', 
+    features['1min'].to_csv(savePath + name_strong_1min, 
                             index = False)
-    # features['3min'].to_csv(savePath + 'sapimouse_3min_strong.csv', 
-    #                         index = False)
+    features['3min'].to_csv(savePath + name_strong_3min, 
+                            index = False)
 
-    # features['1min'].drop(columns=['max_x', 'max_y']).to_csv(savePath + 'sapimouse_1min.csv', 
-    #                         index = False)
-    # features['3min'].drop(columns=['max_x', 'max_y']).to_csv(savePath + 'sapimouse_3min.csv', 
-    #                         index = False)
+    features['1min'].drop(columns=['max_x', 'max_y']).to_csv(savePath + name_1min, 
+                            index = False)
+    features['3min'].drop(columns=['max_x', 'max_y']).to_csv(savePath + name_3min, 
+                            index = False)
 
 def dataToDiffs():
     dataFolder = 'D:/Diplomadolgozat/Users/'

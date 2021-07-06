@@ -47,12 +47,9 @@ def similarCoordinateDifferences(target):
 # get a list of models to evaluate
 def get_models():
 	models = dict()
-	# models['LogisticR'] = LogisticRegression(max_iter=1000)
 	models['RandomForestC'] = RandomForestClassifier(n_estimators=100)
-	# models['rfr'] = RandomForestRegressor(n_estimators=100)
-	models['GradientBoostingC'] = GradientBoostingClassifier(n_estimators=100)
+	# models['GradientBoostingC'] = GradientBoostingClassifier(n_estimators=100)
 	models['KNeighboursC'] = KNeighborsClassifier(n_neighbors=5)
-	# models['knr'] = KNeighborsRegressor(n_neighbors=5)
 	models['DecisionTreeC'] = DecisionTreeClassifier()
 	models['SupportVectorC'] = SVC()
 	models['GaussianNB'] = GaussianNB()

@@ -62,16 +62,22 @@ def sessionHistograms():
     actions_per_user1, actions_per_user3 = countActionsPerUser()
 
     fig = plt.figure()
+    plt.ylabel("felhasználók száma")
+    plt.xlabel("egérműveletek száma")
     plt.hist(actions_per_user1)
     fig.savefig(savePath + 'actions_per_user_1min.png')
     plt.close(fig)
     
     fig = plt.figure()
+    plt.ylabel("felhasználók száma")
+    plt.xlabel("egérműveletek száma")
     plt.hist(actions_per_user3)
     fig.savefig(savePath + 'actions_per_user_3min.png')
     plt.close(fig)
 
     fig, ax = plt.subplots(1, 1)
+    ax.set_ylabel("felhasználók száma")
+    ax.set_xlabel("egérműveletek száma")
 
     # N is the count in each bin, bins is the lower-limit of the bin
     N, _, patches = ax.hist(actions_per_user1)
@@ -91,6 +97,8 @@ def sessionHistograms():
 
     ##################### 3 min #################################
     fig, ax = plt.subplots(1, 1)
+    ax.set_ylabel("felhasználók száma")
+    ax.set_xlabel("egérműveletek száma")
     
     # N is the count in each bin, bins is the lower-limit of the bin
     N, _, patches = ax.hist(actions_per_user3)

@@ -90,16 +90,21 @@ def plotTrajectoriesOnSingleDiagram(len, actionsPerFig):
                     count_PCs += 1
                 
                 plt.figure(1)
+                plt.ylabel("y")
+                plt.xlabel("x")
                 plt.plot(user_data[user_starti:user_stopi+1]['x'], user_data[user_starti:user_stopi+1]['y'], color)
                 plt.plot(user_data.iloc[user_starti]['x'], user_data.iloc[user_starti]['y'], color='green', marker='o', linewidth=2)
                 plt.plot(user_data.iloc[user_stopi]['x'], user_data.iloc[user_stopi]['y'], color='black', marker='x', linewidth=2)
 
-                plt.figure(2)
-                plt.plot(user_data[user_starti:user_stopi+1]['x'], user_data[user_starti:user_stopi+1]['y'])
-                plt.plot(user_data.iloc[user_starti]['x'], user_data.iloc[user_starti]['y'], color='green', marker='o', linewidth=2)
-                plt.plot(user_data.iloc[user_stopi]['x'], user_data.iloc[user_stopi]['y'], color='black', marker='x', linewidth=2)
+            #     plt.figure(2)
+            #     plt.ylabel("y")
+            #     plt.xlabel("x")
+            #     plt.plot(user_data[user_starti:user_stopi+1]['x'], user_data[user_starti:user_stopi+1]['y'])
+            #     plt.plot(user_data.iloc[user_starti]['x'], user_data.iloc[user_starti]['y'], color='green', marker='o', linewidth=2)
+            #     plt.plot(user_data.iloc[user_stopi]['x'], user_data.iloc[user_stopi]['y'], color='black', marker='x', linewidth=2)
+            #     plt.gca().invert_yaxis()
 
-            plt.figure(1)
+            # plt.figure(1)
             legend_elements = [
                 Line2D([0], [0], color='r', label= str(count_PCs) + '-PC'),
                                 Line2D([0], [0], color='b', label= str(count_DDs) + '-DD'),
@@ -108,18 +113,19 @@ def plotTrajectoriesOnSingleDiagram(len, actionsPerFig):
                         ]
 
             plt.legend(handles=legend_elements, loc='best')
+            plt.gca().invert_yaxis()
             fig.savefig(savePath + str(from_action) + '-' + str(to_action) + '.png')
             plt.close(fig)
 
-            plt.figure(2)
-            legend_elements = [
-                                Line2D([0], [0], marker='o', color='g', label='Start'),
-                                Line2D([0], [0], marker='x', color='k', label='Stop')
-                        ]
+            # plt.figure(2)
+            # legend_elements = [
+            #                     Line2D([0], [0], marker='o', color='g', label='Start'),
+            #                     Line2D([0], [0], marker='x', color='k', label='Stop')
+            #             ]
 
-            plt.legend(handles=legend_elements, loc='best')
-            fig2.savefig(savePath + str(from_action) + '-' + str(to_action) + 'mix.png')
-            plt.close(fig2)
+            # plt.legend(handles=legend_elements, loc='best')
+            # fig2.savefig(savePath + str(from_action) + '-' + str(to_action) + 'mix.png')
+            # plt.close(fig2)
 
             from_action = to_action
             to_action += actionsPerFig
@@ -147,7 +153,9 @@ def plotSingleActionOnSingleDiagram(user, nr_action, min):
     x = action['x']
     y = action['y']
     fig = plt.figure()
-    plt.plot(x,y,marker='o')
+    plt.ylabel('y')
+    plt.xlabel('x')
+    plt.plot(x,y,marker='.')
     var = -1
     plotted_last = 0
     max_x = max(x)
@@ -199,6 +207,7 @@ def plotSingleActionOnSingleDiagram(user, nr_action, min):
                                 xytext=(0,5)
                                 )
     
+    plt.gca().invert_yaxis()
     # plt.show()
     fig.savefig(savePath + 'user' + str(user) + '_' + str(nr_action) + '_' + str(min) + 'min_distantiated.png')
     plt.close(fig)

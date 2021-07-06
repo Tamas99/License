@@ -64,9 +64,10 @@ def classification2(df, users):
 ## _logistic.py 301 line
 def trainTest(train, test, users, mode):
     saveFolder = 'D:/Diplomadolgozat/Classification/'
-    scores_filename = 'scores_strong_' + str(max(users)) + '.csv'
+    name = 'plus'
+    scores_filename = 'scores_strong_' + name + str(max(users)) + '.csv'
     if mode == 1:
-        scores_filename = 'scores_' + str(max(users)) + '.csv'
+        scores_filename = 'scores_' + name + str(max(users)) + '.csv'
     Path(saveFolder).mkdir(parents=True, exist_ok=True)
 
     train = selectUsers(train, users)

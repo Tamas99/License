@@ -37,12 +37,12 @@ def main():
 	# trainTest(train, test, users, mode)
 	
 	# mergeData()
-	# subplotActions(1)
+	# subplotActions(0)
 	# generateMouseMovementsBezier()
 	# generateMouseMovementsSynth()
 	# generateMouseMovementsAE2()
 	# generateMouseMovementsAE()
-	# extractFeatures(2)
+	extractFeatures()
 	# binaryClassification(3)
 	# boxplots()
 	# plotXDirectionalDynamics(0)
@@ -52,17 +52,18 @@ def main():
 	# plotSingleActionOnSingleDiagram(1,22,1)
 	# printNumOfActionsPerUser()
 	# plotBezierTrajDxDy()
-	plotTrajDxDy()
+	# plotTrajDxDy()
 	# NumOfActionsToString()
 
 def main1():
-	mode = 0
+	mode = 1
 	users = range(1,11)
-	trainPath = 'D:/Diplomadolgozat/Features/sapimouse_3min_strong.csv'
-	testPath = 'D:/Diplomadolgozat/Features/sapimouse_1min_strong.csv'
+	name = ''
+	trainPath = 'D:/Diplomadolgozat/Features/sapimouse_3min_strong' + name + '.csv'
+	testPath = 'D:/Diplomadolgozat/Features/sapimouse_1min_strong' + name + '.csv'
 	if mode == 1:
-		trainPath = 'D:/Diplomadolgozat/Features/sapimouse_3min.csv'
-		testPath = 'D:/Diplomadolgozat/Features/sapimouse_1min.csv'
+		trainPath = 'D:/Diplomadolgozat/Features/sapimouse_3min' + name + '.csv'
+		testPath = 'D:/Diplomadolgozat/Features/sapimouse_1min' + name + '.csv'
 	train = pd.read_csv(trainPath)
 	test = pd.read_csv(testPath)
 	# classification(test, users, mode)
@@ -70,4 +71,4 @@ def main1():
 
 
 if __name__ == '__main__':
-	main()
+	main1()
